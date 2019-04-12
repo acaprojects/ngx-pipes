@@ -1,4 +1,4 @@
-# Angular 7+ Google Analytics Library
+# Angular 7+ Pipes Library
 
 To build the library run `npm run packagr`
 
