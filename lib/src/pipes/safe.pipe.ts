@@ -14,9 +14,11 @@ export class SafePipe implements PipeTransform {
      */
     public transform(
         value: string,
-        type: 'url' | 'script' | 'style' | 'html' = 'html'
+        type: 'resource' | 'url' | 'script' | 'style' | 'html' = 'html'
     ): SafeHtml | SafeResourceUrl | SafeScript | SafeStyle {
         switch (type) {
+            case 'resource':
+                return this.sanitizer.bypassSecurityTrustResourceUrl(value);
             case 'url':
                 return this.sanitizer.bypassSecurityTrustUrl(value);
             case 'script':

@@ -1,7 +1,6 @@
-import { Component, ViewContainerRef, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 import { AppService } from './services/app.service';
-import { GoogleAnalyticsService } from '../../lib/src/services/google-analytics.service';
 
 import * as day_api from 'dayjs';
 const dayjs = day_api;
@@ -14,10 +13,10 @@ const dayjs = day_api;
 })
 export class AppComponent implements OnInit {
 
-    constructor(private service: AppService, private analytics: GoogleAnalyticsService) { }
+    constructor(private service: AppService) { }
 
     public ngOnInit(): void {
-        
+
     }
 
 }
