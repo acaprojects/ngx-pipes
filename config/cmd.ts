@@ -11,7 +11,7 @@ const npmScript = (name) => (...args) =>
     proc('npm', ['run', name, '--', ...args]);
 
 const npmAction = (name) => (...args) =>
-    proc('npm', [name, '--', ...args]);
+    proc('npm', [name, ...args]);
 
 function createSpawn(cmd, args) {
     return platform === 'win32' ? spawn(cmd, args, { shell: true, stdio: 'inherit' }) : spawn(cmd, args, { stdio: 'inherit' });

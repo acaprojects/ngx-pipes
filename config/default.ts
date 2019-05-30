@@ -72,6 +72,6 @@ gulp.task('build', gulp.series('pre-build', 'ng:build', 'post-build'));
 gulp.task('serve', gulp.series('ng:serve'));
 
 gulp.task('bump', () => {
-    const type = argv.major ? '--major' : (argv.minor ? '--minor' : '--patch');
+    const type = argv.major ? 'major' : (argv.minor ? 'minor' : 'patch');
     return version(type);
 });
