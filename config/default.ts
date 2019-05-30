@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const yargs = require('yargs');
 const replace = require('gulp-string-replace');
 const dayjs = require('dayjs');
+const git = require('gulp-git');
 
 const { ng, version } = require('./cmd');
 const { Dashboard } = require('./dashboard');
@@ -15,7 +16,7 @@ const argv = yargs.argv;
 /** Angular CLI arguments */
 const ngargs: string[] = [];
 
-const library_path = './projects/library/src';
+const library_path = './projects/library';
 
 if (argv.prod || (argv.demo === true && argv.prod !== 'false')) { ngargs.push('--prod'); }
 if (argv.aot || (argv.demo === true && argv.aot !== 'false')) { ngargs.push('--aot'); }
@@ -35,27 +36,27 @@ gulp.task('ng:serve', () => ng('serve', 'demo', ...ngargs));
 gulp.task('version:update', () => {
     const v = npmconfig.version;
     const b = dayjs().startOf('s').valueOf();
-    return gulp.src([`${library_path}/lib/library.module.ts`]) // Any file globs are supported
+    return gulp.src([`${library_path}/src/lib/library.module.ts`]) // Any file globs are supported
         .pipe(replace(/public static version = '[0-9a-zA-Z.-]*'/g, `public static version = '${v}'`, { logs: { enabled: true } }))
         .pipe(replace(/private build = dayjs\([0-9]*\);/g, `private build = dayjs(${b});`, { logs: { enabled: true } }))
-        .pipe(gulp.dest(`${library_path}/lib`));
+        .pipe(gulp.dest(`${library_path}/src/lib`));
 });
 
 /** Return version details back to the dev details */
 gulp.task('version:clean', () => {
     const v = npmconfig.version;
     const b = dayjs().startOf('s').valueOf();
-    return gulp.src([`${library_path}/lib/library.module.ts`]) // Any file globs are supported
+    return gulp.src([`${library_path}/src/lib/library.module.ts`]) // Any file globs are supported
         .pipe(replace(/public static version = '[0-9a-zA-Z.-]*'/g, `public static version = 'local-dev'`, { logs: { enabled: true } }))
         .pipe(replace(/private build = dayjs\([0-9]*\);/g, `private build = dayjs();`, { logs: { enabled: true } }))
-        .pipe(gulp.dest(`${library_path}/lib`));
+        .pipe(gulp.dest(`${library_path}/src/lib`));
 });
 
 /** Copy root project version into  */
 gulp.task('version:copy', () => {
     const v = require('../package.json').version;
     return gulp.src([`${library_path}/package.json`]) // Any file globs are supported
-        .pipe(replace(/version: "[0-9a-zA-Z.-]*"/g, `public static version = 'local-dev'`, { logs: { enabled: true } }))
+        .pipe(replace(/"version": "[0-9a-zA-Z.-]*"/g, `"version": "${v}"`, { logs: { enabled: true } }))
         .pipe(gulp.dest(library_path));
 });
 
@@ -70,8 +71,3 @@ gulp.task('build', gulp.series('pre-build', 'ng:build', 'post-build'));
 
 /** Run serve tasks */
 gulp.task('serve', gulp.series('ng:serve'));
-
-gulp.task('bump', () => {
-    const type = argv.major ? 'major' : (argv.minor ? 'minor' : 'patch');
-    return version(type);
-});
