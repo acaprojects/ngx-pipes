@@ -20,4 +20,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Installation
 
-You install the library from npm using `npm install @acaprojects/ngx-pipes`
+You install the library from npm using `npm install @acaprojects/ngx-pipes`;
