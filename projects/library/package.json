@@ -1,5 +1,5 @@
 {
-  "name": "ngx-pipes",
+  "name": "@acaprojects/ngx-pipes",
   "version": "0.2.0",
   "peerDependencies": {
     "@angular/common": "^8.0.0",
