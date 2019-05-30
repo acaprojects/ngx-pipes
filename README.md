@@ -1,5 +1,9 @@
 # Angular 8+ Pipes Library
 
+[![Travis](https://travis-ci.org/acaprojects/ngx-pipes.svg)](https://travis-ci.org/acaprojects/ngx-pipes)
+[![npm version](https://badge.fury.io/js/%40acaprojects%2Fngx-pipes.svg)](https://badge.fury.io/js/%40acaprojects%2Fngx-pipes)
+[![david-dm](https://david-dm.org/acaprojects/ngx-pipes.svg)](https://david-dm.org/acaprojects/ngx-pipes)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
 ## Development server
