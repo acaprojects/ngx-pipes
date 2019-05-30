@@ -4,7 +4,6 @@ const gulp = require('gulp');
 const yargs = require('yargs');
 const replace = require('gulp-string-replace');
 const dayjs = require('dayjs');
-const git = require('gulp-git');
 
 const { ng, version } = require('./cmd');
 const { Dashboard } = require('./dashboard');
