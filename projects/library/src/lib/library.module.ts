@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 
 import { SafePipe } from './pipes/safe.pipe';
-import { SanitisePipe } from './pipes/sanitise.pipe';
+import { SanitizePipe } from './pipes/sanitise.pipe';
 import { version } from './settings';
 
 import * as dayjs_api from 'dayjs';
 const dayjs = dayjs_api;
 
 @NgModule({
-    declarations: [SafePipe, SanitisePipe],
+    declarations: [SafePipe, SanitizePipe],
     imports: [],
-    exports: [SafePipe, SanitisePipe]
+    exports: [SafePipe, SanitizePipe]
 })
 export class LibraryModule {
-    public static version = 'local-dev';
+    public static version = '0.0.0-development';
     private static init = false;
     readonly build = dayjs();
 

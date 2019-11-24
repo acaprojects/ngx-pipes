@@ -11,9 +11,9 @@ enum SecurityContext {
 }
 
 @Pipe({
-    name: 'sanitise'
+    name: 'sanitize'
 })
-export class SanitisePipe implements PipeTransform {
+export class SanitizePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {}
 
     transform(
@@ -22,15 +22,15 @@ export class SanitisePipe implements PipeTransform {
     ): SafeHtml | SafeResourceUrl | SafeScript | SafeStyle {
         switch (type) {
             case 'resource':
-                return this.sanitizer.sanitise(SecurityContext.RESOURCE_URL, value);
+                return this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, value);
             case 'url':
-                return this.sanitizer.sanitise(SecurityContext.URL, value);
+                return this.sanitizer.sanitize(SecurityContext.URL, value);
             case 'script':
-                return this.sanitizer.sanitise(SecurityContext.SCRIPT, value);
+                return this.sanitizer.sanitize(SecurityContext.SCRIPT, value);
             case 'style':
-                return this.sanitizer.sanitise(SecurityContext.STYLE, value);
+                return this.sanitizer.sanitize(SecurityContext.STYLE, value);
             default:
-                return this.sanitizer.sanitise(SecurityContext.HTML, value);
+                return this.sanitizer.sanitize(SecurityContext.HTML, value);
         }
     }
 }
