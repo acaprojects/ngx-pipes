@@ -13,7 +13,7 @@ const dayjs = dayjs_api;
     exports: [SafePipe, SanitizePipe]
 })
 export class LibraryModule {
-    public static version = '0.0.0-development';
+    public static version = 'local-dev';
     private static init = false;
     readonly build = dayjs();
 
